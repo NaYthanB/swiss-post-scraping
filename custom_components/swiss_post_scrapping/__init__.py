@@ -14,6 +14,7 @@ def setup(hass, config):
     password = config.get(DOMAIN, {}).get("password", "")
     interval_minutes = config.get(DOMAIN, {}).get("interval", 5)
     # Découverte et enregistrement du capteur
+    interval = timedelta(minutes=interval_minutes)  # 
     discovery.load_platform(hass, 'sensor', DOMAIN, {}, config)
 
     def handle_run_selenium(call):
