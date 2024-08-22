@@ -1,0 +1,1 @@
+DOMAIN = "swiss_post_scrapping"
