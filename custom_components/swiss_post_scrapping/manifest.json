@@ -1,0 +1,9 @@
+{
+  "domain": "swiss_post_scrapping",
+  "name": "Swiss Post Scrapping",
+  "version": "1.0.0",
+  "requirements": ["selenium"],
+  "dependencies": ["sensor"],
+  "config_flow": true,
+  "codeowners": ["@yourgithubusername"]
+}
