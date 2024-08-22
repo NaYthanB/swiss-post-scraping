@@ -10,12 +10,9 @@ _LOGGER = logging.getLogger(__name__)
 def setup(hass, config):
     """Set up the My Selenium Integration."""
     # Lire les options depuis la configuration
-    config_entry = config.get(DOMAIN, {})
-    # Lire les options depuis config_entry
-    email = config_entry.data.get("email", "")
-    password = config_entry.data.get("password", "")
-    interval_minutes = config_entry.data.get("interval", 5)
-    interval = timedelta(minutes=interval_minutes)
+    email = config.get(DOMAIN, {}).get("email", "")
+    password = config.get(DOMAIN, {}).get("password", "")
+    interval_minutes = config.get(DOMAIN, {}).get("interval", 5)
     # Découverte et enregistrement du capteur
     discovery.load_platform(hass, 'sensor', DOMAIN, {}, config)
 
