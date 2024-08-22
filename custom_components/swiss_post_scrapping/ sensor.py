@@ -2,6 +2,10 @@ from homeassistant.helpers.entity import Entity
 
 DOMAIN = "swiss_post_scrapping"
 
+async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
+    """Set up the Swiss Post Scrapping sensor platform."""
+    async_add_entities([SwissPostTrackingSensor(hass)])
+
 class SwissPostTrackingSensor(Entity):
     """Sensor to display the tracking numbers from Swiss Post."""
 
