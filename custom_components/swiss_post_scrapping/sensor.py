@@ -2,8 +2,10 @@ from homeassistant.helpers.entity import Entity
 
 DOMAIN = "swiss_post_scrapping"
 
-async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
-    """Set up the Swiss Post Scrapping sensor platform."""
+async def async_setup_entry(hass, entry, async_add_entities):
+    """Set up Swiss Post Scrapping sensors from a config entry."""
+    
+    # Créer une instance du capteur et l'ajouter
     async_add_entities([SwissPostTrackingSensor(hass)])
 
 class SwissPostTrackingSensor(Entity):
@@ -28,9 +30,8 @@ class SwissPostTrackingSensor(Entity):
             return ', '.join(tracking_numbers)
         return "No data"
 
-    def update(self):
+    async def async_update(self):
         """Fetch new state data for the sensor."""
-        # Update is called periodically to refresh the sensor's state
         tracking_numbers = self._hass.data.get(DOMAIN, {}).get("tracking_numbers", [])
         if tracking_numbers:
             self._state = ', '.join(tracking_numbers)
