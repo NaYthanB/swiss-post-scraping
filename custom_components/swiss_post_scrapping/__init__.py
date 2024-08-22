@@ -19,19 +19,27 @@ def setup(hass, config):
     def handle_run_selenium(call):
         """Service pour exécuter le script Selenium avec les paramètres."""
         from selenium import webdriver
-        from selenium.webdriver.chrome.options import Options
+        # from selenium.webdriver.chrome.options import Options
+        from selenium.webdriver.firefox.options import Options
         from selenium.webdriver.common.by import By
         from selenium.webdriver.support.ui import WebDriverWait
         from selenium.webdriver.support import expected_conditions as EC
         from selenium import webdriver
         from selenium.webdriver.common.action_chains import ActionChains
         import time
-        
-        
-        options = Options()
-        options.add_argument("--verbose")
+ 
+        # options = Options()
+        # options.add_argument("--verbose")
 
-        driver = webdriver.Chrome(options=options)
+        # driver = webdriver.Chrome(options=options)
+
+
+        # Configurer les options de Firefox
+        options = Options()
+        options.headless = True  # Pour exécuter Firefox en mode headless (sans interface graphique)
+
+        # Créer une instance de WebDriver avec Firefox
+        driver = webdriver.Firefox(options=options)
         driver.set_window_size(565, 700)
 
         try:
